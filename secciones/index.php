@@ -7,7 +7,7 @@
             <hr class="my-2">
             <p>Iniciar la Aplicacion</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="vista_alumnos.php" role="button">Iniciar</a>
+                <a class="btn btn-outline-primary" href="vista_alumnos.php" role="button">Iniciar</a>
             </p>
         </div>
     </div>

@@ -27,7 +27,7 @@ print_r($alumno);
 $pdf = new FPDF("L", "mm", array(254,194));
 $pdf->AddPage();
 $pdf->setFont("Arial","B",16);
-agregarImagen($pdf, "../src/certificado.jpg",0,0)
+agregarImagen($pdf, "../src/certificado.jpg",0,0);
 agregarTexto($pdf,ucwords(utf8_decode($alumno['nombre']." ".$alumno['apellidos'])),60,70,'L',"Helvetica",30,0,84,115);
 agregarTexto($pdf,$alumno['nombre_curso'],-250,110,'C',"Helvetica",20,0,84,115);
 agregarTexto($pdf,date("d/m/Y"),-350,155,'C',"Helvetica",11,0,84,115);

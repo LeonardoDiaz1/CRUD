@@ -16,26 +16,28 @@
             </div>
             <div class="mb-3">
                 <label for="nombre_curso" class="form-label">Nombre</label>
-                <input type="text" required value="<?php echo $nombre_curso; ?>" class="form-control" name="nombre_curso" id="nombre_curso" aria-describedby="helpId" placeholder="Nombre del Curso">
+                <input type="text" required value="<?php echo $nombre_curso; ?>" class="form-control" name="nombre_curso" id="nombre_curso" aria-describedby="helpId" pattern="[a-z, A-Z]*" placeholder="Nombre del Curso">
             </div>
 
-            <div class="btn-group" role="group" aria-label="">
+            <center><div class="d-grid gap-3 d-md-block" role="group" aria-label="">
                 <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
                 <button type="submit" name="accion" value="editar" class="btn btn-warning">Editar</button>
                 <button type="submit" name="accion" value="borrar" class="btn btn-danger">Borrar</button>
-            </div>
+            </div></center>
         </div>
     </div>
     </form>
 </div>
 
 <div class="col-md-7">
-    <table class="table">
-        <thead>
+    <table class="table table-bordered border-dark">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Acciones</th>
+                <th>
+                  <center> Acciones </center> 
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +48,7 @@
                     <td>
                         <form action="" method="post">
                             <input type="hidden" name="id" id="id" value="<?php echo $cusrso['id']; ?>"/>
-                            <input type="submit" style="color:azure" value="Seleccionar" name="accion" class="btn btn-primary">
+                            <center><input type="submit" value="Seleccionar" name="accion" class="btn btn-primary"></center>
                         </form>
                     </td>
                 </tr>

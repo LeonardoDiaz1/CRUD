@@ -1,6 +1,8 @@
 <?php include('../templates/cabecera.php'); ?>
 <?php include('../secciones/alumnos.php'); ?>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
+
 <br>
 <div class="row">
     <div class="col-md-5">
@@ -19,12 +21,12 @@
                         <div class="mb-3">
                           <label for="" class="form-label">Nombre</label>
                           <input type="text"
-                            class="form-control" required value="<?php echo $nombre; ?>" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Escribe el Nombre">
+                            class="form-control" pattern="[a-z, A-Z]*" required value="<?php echo $nombre; ?>" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Escribe el Nombre">
                         </div>
                         <div class="mb-3">
                           <label for="" class="form-label">Apellidos</label>
                           <input type="text"
-                            class="form-control" required value="<?php echo $apellidos; ?>" name="apellidos" id="apellidos" aria-describedby="helpId" placeholder="Escribe los Apellidos">
+                            class="form-control" pattern="[a-z, A-Z]*" required value="<?php echo $apellidos; ?>" name="apellidos" id="apellidos" aria-describedby="helpId" placeholder="Escribe los Apellidos">
                         </div>
                         <div class="mb-3">
                           <label for="" class="form-label">Cursos del alumno</label>
@@ -46,22 +48,24 @@
                           </select>
 
                         </div>
-                        <div class="btn-group" role="group" aria-label="">
+                        <center><div class="d-grid gap-3 d-md-block" role="group" aria-label="">
                             <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
                             <button type="submit" name="accion" value="editar" class="btn btn-warning">Editar</button>
                             <button type="submit" name="accion" value="borrar" class="btn btn-danger">Borrar</button>
-                        </div>
+                        </div></center>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-md-7">
-            <table class="table">
-                <thead>
+            <table class="table table-bordered border-dark">
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Acciones</th>
+                        <th>
+                            <center> Acciones </center>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +82,7 @@
                             <br/> 
                             <?php foreach($alumno["cursos"] as $curso){ ?>
 
-                                - <a href="certificado.php?idcurso=<?php echo $curso['id']; ?>&idalumno=<?php echo $alumno['id']; ?>"> <i class="bi bi-filetype-pdf text-danger"></i> <?php echo $curso['nombre_curso'];?> </a> <br/>
+                                - <a href="certificado.php?idcurso=<?php echo $curso['id']; ?>&idalumno=<?php echo $alumno['id']; ?>"> <i class="bi bi-file-earmark-pdf text-danger"></i> <?php echo $curso['nombre_curso'];?> </a> <br/>
 
                             <?php } ?>
                             
@@ -87,7 +91,7 @@
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="id" value="<?php echo $alumno['id'];?>">
-                                <input style="color:azure" type="submit" value="Seleccionar" name="accion" class="btn btn-primary">
+                                <center><input type="submit" value="Seleccionar" name="accion" class="btn btn-primary"></center>
                             </form>
                         </td>
                     </tr>
