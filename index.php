@@ -1,12 +1,22 @@
 <?php
 session_start();
 
+/**
+ * Este script maneja la autenticación de usuarios.
+ *
+ * Comprueba si se ha enviado un formulario POST con datos de usuario y contraseña.
+ * Si los datos son válidos, inicia una sesión y redirige al usuario a una página de inicio de sesión exitoso.
+ * Si los datos son inválidos, muestra un mensaje de error en la página de inicio de sesión.
+ */
+
   if($_POST){
 
     $mensaje='Usuario o Contraseña incorrectos';
-
+    // Verifica si el usuario y la contraseña enviados coinciden con los valores esperados
     if($_POST['usuario']=='Leonardo' && $_POST['password']=='admin'){
+      // Inicia sesión y almacena el nombre de usuario en la variable de sesión
       $_SESSION['usuario']=$_POST['usuario'];
+      // Redirige al usuario a la página de inicio después de iniciar sesión exitosamente
       header('Location: secciones/index.php');
     }
   }
