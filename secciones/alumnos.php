@@ -48,18 +48,21 @@ if($accion!=''){
             $nombre=$alumno['nombre'];
             $apellidos=$alumno['apellidos'];
             
+            // Se obtienen los cursos asociados al alumno seleccionado
             $sql="SELECT cursos.id FROM alumnos_cursos INNER JOIN cursos ON cursos.id=alumnos_cursos.idcurso WHERE alumnos_cursos.idalumno=:idalumno";
             $consulta=$conexionBD->prepare($sql);
             $consulta->bindParam(':idalumno',$id);
             $consulta->execute();
             $cursosAlumno=$consulta->fetch(PDO::FETCH_ASSOC);
             
+            // Se almacenan los IDs de los cursos en un arreglo
             foreach($cursosAlumno as $curso){
                 $arregloCursos[]=$curso['id'];
             }
         break;
 
         case 'borrar':
+            // Borra un alumno de la base de datos
             $sql="DELETE FROM alumnos WHERE id=:id";
             $consulta=$conexionBD->prepare($sql);
             $consulta->bindParam(':id',$id);
@@ -67,6 +70,7 @@ if($accion!=''){
         break;
         
         case 'editar':
+            // Actualiza la información de un alumno en la base de datos
             $sql="UPDATE alumnos SET nombre=:nombre, apellidos=:apellidos WHERE id=:id";
             $consulta=$conexionBD->prepare($sql);
             $consulta->bindParam(':id',$id);
@@ -74,12 +78,15 @@ if($accion!=''){
             $consulta->bindParam(':apellidos',$apellidos);
             $consulta->execute();
 
+            // Si se han seleccionado cursos para el alumno, actualiza la tabla de relación alumnos_cursos
             if(isset($cursos)){
+                // Borra los cursos previamente asociados al alumno
                 $sql="DELETE FROM alumnos_cursos WHERE idalumno=:idalumno";
                 $consulta=$conexionBD->prepare($sql);
                 $consulta->bindParam(':idalumno',$id);
                 $consulta->execute();
 
+                // Inserta los nuevos cursos asociados al alumno
                 foreach($cursos as $curso){
                     $sql="INSERT INTO alumnos_cursos (id, idalumno, idcurso) VALUES (NULL, :idalumno, :idcurso)";
                     $consulta=$conexionBD->prepare($sql);
@@ -93,13 +100,13 @@ if($accion!=''){
     }
 }
 
-
+// Selecciona todos los alumnos de la base de datos
 $sql="SELECT * FROM alumnos";
 $listaAlumnos=$conexionBD->query($sql);
 $alumnos=$listaAlumnos->fetchAll();
 
+// Para cada alumno, se obtienen los cursos asociados
 foreach($alumnos as $clave => $alumno){
-
     $sql="SELECT * FROM cursos WHERE id IN (SELECT idcurso FROM alumnos_cursos WHERE idalumno=:idalumno)";
     $consulta=$conexionBD->prepare($sql);
     $consulta->bindParam(':idalumno',$alumno['id']);
@@ -108,6 +115,7 @@ foreach($alumnos as $clave => $alumno){
     $alumnos[$clave]['cursos']=$cursosAlumno;
 }
 
+// Selecciona todos los cursos de la base de datos
 $sql="SELECT * FROM cursos";
 $listaCursos=$conexionBD->query($sql);
 $cursos=$listaCursos->fetchAll();

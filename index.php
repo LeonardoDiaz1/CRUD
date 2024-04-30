@@ -12,11 +12,11 @@ session_start();
   if($_POST){
 
     $mensaje='Usuario o Contraseña incorrectos';
-    // Verifica si el usuario y la contraseña enviados coinciden con los valores esperados
+    // Verifica si el usuario y la contraseña enviados coinciden con los valores esperados.
     if($_POST['usuario']=='Leonardo' && $_POST['password']=='admin'){
-      // Inicia sesión y almacena el nombre de usuario en la variable de sesión
+      // Inicia sesión y almacena el nombre de usuario en la variable de sesión.
       $_SESSION['usuario']=$_POST['usuario'];
-      // Redirige al usuario a la página de inicio después de iniciar sesión exitosamente
+      // Redirige al usuario a la página de inicio después de iniciar sesión exitosamente.
       header('Location: secciones/index.php');
     }
   }

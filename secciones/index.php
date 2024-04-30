@@ -1,3 +1,4 @@
+<!-- Se incluye el archivo de cabecera que contiene la estructura HTML común para todas las páginas -->
 <?php include('../templates/cabecera.php'); ?>
 
     <div class="p-5 bg-light">
@@ -11,5 +12,6 @@
             </p>
         </div>
     </div>
-    
+
+<!-- Se incluye el archivo de pie que contiene el cierre de la estructura HTML común -->
 <?php include('../templates/pie.php'); ?> 
