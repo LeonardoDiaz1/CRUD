@@ -1,0 +1,9 @@
+# Coneccion a la Base de Datos
+/configuraciones
+
+# Ignoramos la libreria para la realizacion de los certificados
+/lib
+
+# Ignoramos todos los Archivos de imagenes
+*.png
+*.jpg
